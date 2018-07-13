@@ -413,7 +413,7 @@ def print_select_game_mode():
     print("Please select a game mode:")
     print(" (1) Single Player")
     print(" (2) Multi Player")
-    print(" (3) Full AI Mode")
+    print(" (3) Human-less Mode")
     print(" (4) Quit")
     game_type = input("Please choose a game type [1,2,3,4]: ")
     if game_type == '1':

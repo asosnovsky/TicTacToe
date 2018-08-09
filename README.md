@@ -14,10 +14,9 @@ If you are running a unix-based system (linux or mac) then simply run the progra
 ./tictactoe
 ```
 
-Otherwise, rebuild with Go in windows
+Otherwise, in windows run the following file
 ```bat
-go build
-./tictactoe.exe
+tictactoe.exe
 ```
 
 ## Game Modes

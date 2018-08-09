@@ -1,4 +1,4 @@
-# TicTacToe
+# TicTacToe (Go Version)
 <img src="readme/start_screen.png" width="569">
 
 ## What is this?

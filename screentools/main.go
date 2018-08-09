@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"os/exec"
+	"runtime"
 	"strconv"
 	"strings"
 
@@ -13,9 +15,16 @@ import (
 
 // ClearScreen will empty the screen
 func ClearScreen() {
-	tm.Flush()
-	tm.MoveCursor(1, 1)
-	tm.Clear()
+	if runtime.GOOS == "windows" {
+		cmd := exec.Command("cmd", "/c", "cls")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	} else {
+		tm.Flush()
+		tm.MoveCursor(1, 1)
+		tm.Clear()
+	}
+
 }
 
 // ReadInput from user

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"math/rand"
+	"runtime"
 	"time"
 
 	st "../screentools"
@@ -84,7 +85,11 @@ func (game Game) restart() (string, Game, error) {
 
 func (game Game) next() (Game, error) {
 	if game.currentPlayer.isPC {
-		fmt.Println("Computer is thinking... 🤔")
+		if runtime.GOOS == "windows" {
+			fmt.Println("Computer is thinking... :/")
+		} else {
+			fmt.Println("Computer is thinking... 🤔")
+		}
 		time.Sleep(time.Millisecond * time.Duration(rand.Intn(600)+200))
 		board, err := game.board.SetRandom(game.currentPlayer.symbol)
 		if err != nil {

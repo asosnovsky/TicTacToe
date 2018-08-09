@@ -14,10 +14,7 @@ If you are running a unix-based system (linux or mac) then simply run the progra
 ./tictactoe
 ```
 
-Otherwise, in windows run the following file
-```bat
-tictactoe.exe
-```
+Otherwise, in windows download/run the exe file [tictactoe.exe](tictactoe.exe)
 
 ## Game Modes
 

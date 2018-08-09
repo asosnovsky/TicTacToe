@@ -2,7 +2,7 @@
 <img src="readme/start_screen.png" width="569">
 
 ## What is this?
-This is a simple implementation of a Tic Tac Toe Game, that you can run in your terminal. 
+This is a simple implementation of a Tic Tac Toe Game, that you can run in your terminal. If you would like to simply download a binary file or see the same implementation in Golang, see the [Go Branch](https://github.com/asosnovsky/TicTacToe/tree/go).
 
 ## Requirments
  - Python 3.6.4 > 

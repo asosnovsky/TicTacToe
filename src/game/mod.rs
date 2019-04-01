@@ -29,18 +29,10 @@ fn start_game(game_title: &str, num_humans: i32) {
     
     utils::clear_console();
     let players = flip_coin(p1, p2, num_humans > 0, num_humans == 2);
-    println!(
-        "
-            Starting {} Mode
-                - Player 1: {} ({})
-                - Player 2: {} ({})
-        ", 
-        game_title,
-        players[0].name, 
-        players[0].get_text_sym(), 
-        players[1].name, 
-        players[1].get_text_sym()
-    );
+    println!("Starting {} Mode",game_title);
+    println!("  - Player 1: {} ({})", players[0].name, players[0].get_text_sym());
+    println!("  - Player 2: {} ({})", players[1].name, players[1].get_text_sym());
+    println!();
     utils::sleep(500);
     
     let mut game = Game::new(
@@ -135,7 +127,7 @@ impl Game {
             utils::sleep(500);
             self.switch_players(res);
         }   else {
-            println!("{} is thinking... :/", self.current_player.name);
+            println!("{} is thinking... 🤔", self.current_player.name);
             utils::sleep(1000);
             let res = self.board.set_random(self.current_player.sym);
             utils::clear_console();

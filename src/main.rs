@@ -25,14 +25,14 @@ fn main() {
 }
 
 fn menu_main() {
-    println!("
-        Please select a game mode:
-            (1) Single Player
-            (2) Multi Player
-            (3) Human-less Player
-            (4) Quit
-        Please choose a game type [1,2,3,4]: 
-    ");
+    print!("
+Please select a game mode:
+    (1) Single Player
+    (2) Multi Player
+    (3) Human-less Player
+    (4) Quit
+Please choose a game type [1,2,3,4]: ");
+    io::Write::flush(&mut io::stdout()).expect("flush failed!");
     let mut uinput = String::new();
     io::stdin().read_line(&mut uinput).expect("Failed to read line");;
     uinput = uinput.trim().to_string();

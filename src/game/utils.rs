@@ -32,7 +32,6 @@ pub fn input(text: String) -> String {
     let mut uinput = String::new();
     io::stdin().read_line(&mut uinput).expect("Failed to read line");;
     uinput = uinput.trim().to_string();
-    println!();
     return uinput;
 }
 

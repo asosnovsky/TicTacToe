@@ -2,8 +2,7 @@
 <img src="readme/start_screen.png" width="569">
 
 ## What is this?
-This is a simple implementation of a Tic Tac Toe Game in the [rust language](https://www.rust-lang.org/), that you can run in your terminal. For the simpler other versions, see the [Master Branch](https://github.com/asosnovsky/TicTacToe/tree/master).
-
+This is a simple implementation of a Tic Tac Toe Game in the [rust language](https://www.rust-lang.org/), that you can run in your terminal. For the other versions, see the [Master Branch](https://github.com/asosnovsky/TicTacToe/tree/master#what-is-this).
 ## Requirments
 Nothing, just run the binary (or rebuild with rust)
 

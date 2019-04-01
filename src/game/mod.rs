@@ -1,18 +1,51 @@
+use std::io;
 use board::BoardCellState;
-mod utils;
-mod board;
+pub mod utils;
+pub mod board;
 
 pub fn single_player() {
-    let p1 = utils::input("Please input name for player 1: ".to_string());
+    start_game("Multi Player", 1);
+}
+
+pub fn multi_player() {
+    start_game("Multi Player", 2);
+}
+
+pub fn humanless() {
+    start_game("AI Game", 0);
+}
+
+fn start_game(game_title: &str, num_humans: i32) {
+    
+    let mut p1 = "PC1".to_string();
+    let mut p2 = "PC2".to_string();
+    if num_humans == 1 {
+        p1 = utils::input("Please input name for player 1: ".to_string());
+        p2 = "PC".to_string();
+    }   else if num_humans == 2 {
+        p1 = utils::input("Please input name for player 1: ".to_string());
+        p2 = utils::input("Please input name for player 2: ".to_string());
+    }
+    
     utils::clear_console();
-    println!("
-        Starting Single Player Mode
-            - Player 1: {}
-            - Player 2: PC
-    ", p1);
+    let players = flip_coin(p1, p2, num_humans > 0, num_humans == 2);
+    println!(
+        "
+            Starting {} Mode
+                - Player 1: {} ({})
+                - Player 2: {} ({})
+        ", 
+        game_title,
+        players[0].name, 
+        players[0].get_text_sym(), 
+        players[1].name, 
+        players[1].get_text_sym()
+    );
+    utils::sleep(500);
+    
     let mut game = Game::new(
-        Player{ name: p1, is_human: true, sym: BoardCellState::X },
-        Player{ name: "PC".to_string(), is_human: false, sym: BoardCellState::O },
+        players[0].clone(),
+        players[1].clone(),
         3,
     );
     game.board.print();
@@ -20,29 +53,27 @@ pub fn single_player() {
     game.next_move();
 }
 
-pub fn multi_player() {
-    println!("\r");
-    let mut game = Game::new(
-        Player{ name: utils::input("Please input name for player 1: ".to_string()), is_human: true, sym: BoardCellState::X },
-        Player{ name: String::from("PC"), is_human: true, sym: BoardCellState::O },
-        3,
-    );
-    println!("Starting Multi Player game!");
-    game.next_move();
-}
-
-pub fn humanless() {
-    println!("\r");
-    let mut game = Game::new(
-        Player{ name: String::from("PC1"), is_human: false, sym: BoardCellState::X },
-        Player{ name: String::from("PC2"), is_human: false, sym: BoardCellState::O },
-        3,
-    );
-    utils::clear_console();
-    utils::sleep(500);
-    println!("Starting AI game!");
-    game.next_move();
-}
+fn flip_coin(p1name: String, p2name: String, p1is_human: bool, p2is_human: bool) -> [Player; 2] {
+    print!("Fliping coin to see who goes first"); io::Write::flush(&mut io::stdout()).expect("flush failed!");
+    utils::sleep(400); 
+    print!("."); io::Write::flush(&mut io::stdout()).expect("flush failed!");
+    utils::sleep(400);
+    print!("."); io::Write::flush(&mut io::stdout()).expect("flush failed!");
+    utils::sleep(400);
+    println!("."); io::Write::flush(&mut io::stdout()).expect("flush failed!");
+    utils::sleep(400);
+    if rand::random() {
+        return [
+            Player{ name: p1name, is_human: p1is_human, sym: BoardCellState::X },
+            Player{ name: p2name, is_human: p2is_human, sym: BoardCellState::O },
+        ]
+    }   else {
+        return [
+            Player{ name: p2name, is_human: p2is_human, sym: BoardCellState::X },
+            Player{ name: p1name, is_human: p1is_human, sym: BoardCellState::O },
+        ]
+    }
+} 
 
 struct Game {
     board: board::Board,
